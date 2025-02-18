@@ -35,9 +35,9 @@ After creating the repository, follow **Step 5** to push the image.
 ### •	Step 7: Setup Amazon EKS Cluster Requirements
 You need to install and configure the following tools:
 
-** eksctl: Install it via Homebrew or download it directly from GitHub.
-** kubectl: This is the Kubernetes CLI used to interact with the EKS cluster.
-** AWS CLI: Make sure your AWS CLI is configured with your IAM credentials.
+** eksctl: ** Install it via Homebrew or download it directly from GitHub.
+** kubectl: ** This is the Kubernetes CLI used to interact with the EKS cluster.
+** AWS CLI: **  Make sure your AWS CLI is configured with your IAM credentials.
 ### •	Step 8: Creating an Amazon EKS cluster
 ### •	Step 9: Create a Node Group
 ### •	Step 10: Create a Kubernetes Deployment
