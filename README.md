@@ -1,6 +1,6 @@
 Flask Web Application with Docker and EKS Deployment
-•	Step 1: Create a Flask Web Application
-### Start by creating a basic Flask web application. Flask is a lightweight Python web framework that allows you to build web applications with ease
+### •	Step 1: Create a Flask Web Application
+ Start by creating a basic Flask web application. Flask is a lightweight Python web framework that allows you to build web applications with ease
 •	Step 2: Create a Dockerfile
 •	Step 3: Create a requirements.txt File
 •	Step 4: Preparing Your Environment
