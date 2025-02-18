@@ -18,8 +18,26 @@ Make sure you have an AWS account set up with the appropriate IAM roles for ECR 
 **`docker build -t eks-flask-web-app .`**
 2. **Tag the Docker Image:** Tag the image with your Amazon ECR repository URI:
 **`docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest`**
+3. **Login to ECR:** Use the AWS CLI to authenticate Docker to your Amazon ECR registry:
+**`aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+`**
+4. Push the Docker Image to ECR: Finally, push the image to Amazon ECR:
+**` docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest `**
+
 ### •	Step 6: Step 6: Create Amazon ECR Repository
+Before pushing your Docker image to ECR, you need to create an ECR repository:
+
+In the AWS Management Console, go to ECR.
+Click Create repository.
+Name the repository (e.g.,** my-flask-app**) and create it.
+After creating the repository, follow **Step 5** to push the image.
+
 ### •	Step 7: Setup Amazon EKS Cluster Requirements
+You need to install and configure the following tools:
+
+** eksctl: Install it via Homebrew or download it directly from GitHub.
+** kubectl: This is the Kubernetes CLI used to interact with the EKS cluster.
+** AWS CLI: Make sure your AWS CLI is configured with your IAM credentials.
 ### •	Step 8: Creating an Amazon EKS cluster
 ### •	Step 9: Create a Node Group
 ### •	Step 10: Create a Kubernetes Deployment
