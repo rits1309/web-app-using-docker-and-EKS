@@ -14,8 +14,10 @@ eksctl: A tool for creating EKS clusters.
 Make sure you have an AWS account set up with the appropriate IAM roles for ECR and EKS access.
 
 ### •	Step 5: Build and Push Docker Image to Amazon ECR
-Build the Docker Image: First, build the Docker image using the docker build command:
+1.** Build the Docker Image:** First, build the Docker image using the docker build command:
 **`docker build -t eks-flask-web-app .`**
+2.**Tag the Docker Image:** Tag the image with your Amazon ECR repository URI:
+**`docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest`**
 ### •	Step 6: Step 6: Create Amazon ECR Repository
 ### •	Step 7: Setup Amazon EKS Cluster Requirements
 ### •	Step 8: Creating an Amazon EKS cluster
