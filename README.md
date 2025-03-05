@@ -52,8 +52,13 @@ Make sure you have an AWS account set up with the appropriate IAM roles for ECR 
 ## Step 5: Build and Push Docker Image to Amazon ECR
 - **Build the Docker Image**: First, build the Docker image using the docker build command:
 ```
-docker build -t my-flask-app .
+docker build -t my-eks-web-app .
 ```
+- **Run Image:** Run the newly built image.
+```
+  docker run -p 5000:5000 my-eks-web-app
+```
+- Running Docker locally, point your browser to ```http://Server's public IP:5000/```
 - **Tag the Docker Image**: Tag the image with your Amazon ECR repository URI:
 ```
 docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
