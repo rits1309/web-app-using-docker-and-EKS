@@ -35,10 +35,12 @@ CMD ["python", "app.py"]
     Install the required dependencies.
     Expose port 80 (as Flask runs on port 80).
     Define the command to run the Flask app.
-Step 3: Create a requirements.txt File
+## Step 3: Create a requirements.txt File
 In the requirements.txt file, list the dependencies needed to run the Flask app, including Flask itself.
 requirements.txt:
+```
 Flask==2.1.0
+```
 This will install Flask when building the Docker image.
 Step 4: Preparing Your Environment
 Before you can build your Docker image and deploy to ECR and EKS, make sure you have the following tools installed:
