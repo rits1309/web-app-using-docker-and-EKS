@@ -22,7 +22,7 @@ This is a simple "Hello, World!" application to test our Docker container and Ku
 A Dockerfile is a script used by Docker to build an image. Here's how to create a Dockerfile to containerize the Flask application.
 ### Dockerfile:
 ```
-FROM python:3.9-slim //Use the official Python image from Docker Hub
+FROM python:3.9-slim #### Use the official Python image from Docker Hub
 # Set the working directory inside the container
 WORKDIR /app
 # Copy the current directory contents into the container at /app
