@@ -86,7 +86,7 @@ kubectl: This is the Kubernetes CLI used to interact with the EKS cluster.
 AWS CLI: Make sure your AWS CLI is configured with your IAM credentials.
 ## Step 8: Creating an Amazon EKS Cluster
 To create an EKS cluster, run the following eksctl command:
-eksctl create cluster --name my-flask-cluster --region <region> --nodegroup-name my-node-group --node-type t3.micro --nodes 3
+```eksctl create cluster --name my-flask-cluster --region <region> --nodegroup-name my-node-group --node-type t3.micro --nodes 3```
 This command will create an EKS cluster with 3 t3.micro nodes in the specified region.
 
 ## Step 9: Create a Node Group
