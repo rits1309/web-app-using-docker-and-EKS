@@ -84,23 +84,14 @@ This command will create an EKS cluster with 3 t3.micro nodes in the specified r
 ## Step 9: Create a Node Group
 When you create an EKS cluster, you may also need to create a node group to run your applications. You can add this as part of the cluster creation process using eksctl or manually from the AWS console.
 ## Step 10: Create a Kubernetes Deployment
-Create a Deployment YAML file (deployment.yaml):
-Deploy to EKS: Run the following command to create the deployment in your EKS cluster:
+- Create a Deployment YAML file (deployment.yaml):
+- Deploy to EKS: Run the following command to create the deployment in your EKS cluster:
+```eksctl create cluster --name my-flask-cluster --region <region> --nodegroup-name my-node-group --node-type t3.micro --nodes 3 ```
 ## Step 11: Test The Application
 Once the deployment is successful, expose the Flask app via a Kubernetes service:
-Create a Service YAML file (service.yaml):
-Apply the Service:
-Access the application: Use the external IP provided by the LoadBalancer to access the Flask app in the browser.
-## Step 12: Cleanup
-After testing your application, you can clean up the resources to avoid unnecessary charges:
-Delete the EKS cluster:
-Delete the ECR repository (if no longer needed):
-Conclusion
-This guide covers the steps to build a simple Flask web application, containerize it with Docker, deploy it to AWS using Amazon ECR and EKS, and test the deployment. By following the steps above, you can learn how to integrate Docker and Kubernetes with AWS for scalable web application deployments.
-Let me know if you'd like to add more specific details or have any questions!
-aws ecr delete-repository --repository-name my-flask-app --force
-eksctl delete cluster --name my-flask-cluster
-kubectl apply -f service.yaml
+- Create a Service YAML file (service.yaml): ``` kubectl apply -f service.yaml ```
+
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -113,7 +104,21 @@ spec:
       port: 80
       targetPort: 80
   type: LoadBalancer
+```
+Apply the Service:
+Access the application: Use the external IP provided by the LoadBalancer to access the Flask app in the browser.
+## Step 12: Cleanup
+After testing your application, you can clean up the resources to avoid unnecessary charges:
+Delete the EKS cluster:
+Delete the ECR repository (if no longer needed):
+Conclusion
+This guide covers the steps to build a simple Flask web application, containerize it with Docker, deploy it to AWS using Amazon ECR and EKS, and test the deployment. By following the steps above, you can learn how to integrate Docker and Kubernetes with AWS for scalable web application deployments.
+Let me know if you'd like to add more specific details or have any questions!
+aws ecr delete-repository --repository-name my-flask-app --force
+eksctl delete cluster --name my-flask-cluster
+
 kubectl apply -f deployment.yaml
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -133,10 +138,9 @@ spec:
         image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
         ports:
         - containerPort: 80
+```
 docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 docker build -t my-flask-app .
-ChatGPT
-ChatGPT helps you get answers, find inspiration and be more productive. It is free to use and easy to try. Just ask and ChatGPT can help with writing, learning, brainstorming and more.
- 
+
