@@ -44,10 +44,10 @@ Flask==2.1.0
 This will install Flask when building the Docker image.
 ## Step 4: Preparing Your Environment
 Before you can build your Docker image and deploy to ECR and EKS, make sure you have the following tools installed:
-- Docker: For building and running container images.
-- AWS CLI: For interacting with AWS services.
-- kubectl: The command line tool for Kubernetes.
-- eksctl: A tool for creating EKS clusters.
+- **Docker**: For building and running container images.
+- **AWS CLI**: For interacting with AWS services.
+- **kubectl**: The command line tool for Kubernetes.
+- **eksctl**: A tool for creating EKS clusters.
 Make sure you have an AWS account set up with the appropriate IAM roles for ECR and EKS access.
 ## Step 5: Build and Push Docker Image to Amazon ECR
 - Build the Docker Image: First, build the Docker image using the docker build command:
