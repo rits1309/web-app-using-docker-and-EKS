@@ -81,16 +81,39 @@ AWS CLI: Make sure your AWS CLI is configured with your IAM credentials.
 To create an EKS cluster, run the following eksctl command:
 eksctl create cluster --name my-flask-cluster --region <region> --nodegroup-name my-node-group --node-type t3.micro --nodes 3
 This command will create an EKS cluster with 3 t3.micro nodes in the specified region.
+
 ## Step 9: Create a Node Group
 When you create an EKS cluster, you may also need to create a node group to run your applications. You can add this as part of the cluster creation process using eksctl or manually from the AWS console.
+
 ## Step 10: Create a Kubernetes Deployment
 - Create a Deployment YAML file (deployment.yaml):
 - Deploy to EKS: Run the following command to create the deployment in your EKS cluster:
 ```eksctl create cluster --name my-flask-cluster --region <region> --nodegroup-name my-node-group --node-type t3.micro --nodes 3 ```
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
+        ports:
+        - containerPort: 80
+```
+Save it and run ```kubectl apply -f deployment.yaml```
 ## Step 11: Test The Application
 Once the deployment is successful, expose the Flask app via a Kubernetes service:
 - Create a Service YAML file (service.yaml): ``` kubectl apply -f service.yaml ```
-
 ```
 apiVersion: v1
 kind: Service
@@ -117,28 +140,8 @@ Let me know if you'd like to add more specific details or have any questions!
 aws ecr delete-repository --repository-name my-flask-app --force
 eksctl delete cluster --name my-flask-cluster
 
-kubectl apply -f deployment.yaml
-```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: flask-app
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: flask-app
-  template:
-    metadata:
-      labels:
-        app: flask-app
-    spec:
-      containers:
-      - name: flask-app
-        image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
-        ports:
-        - containerPort: 80
-```
+
+
 docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
