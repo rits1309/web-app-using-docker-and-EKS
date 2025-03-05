@@ -49,37 +49,49 @@ Before you can build your Docker image and deploy to ECR and EKS, make sure you 
 - kubectl: The command line tool for Kubernetes.
 - eksctl: A tool for creating EKS clusters.
 Make sure you have an AWS account set up with the appropriate IAM roles for ECR and EKS access.
-Step 5: Build and Push Docker Image to Amazon ECR
-Build the Docker Image: First, build the Docker image using the docker build command:
-Tag the Docker Image: Tag the image with your Amazon ECR repository URI:
-Login to ECR: Use the AWS CLI to authenticate Docker to your Amazon ECR registry:
-Push the Docker Image to ECR: Finally, push the image to Amazon ECR:
-Step 6: Create Amazon ECR Repository
+## Step 5: Build and Push Docker Image to Amazon ECR
+- Build the Docker Image: First, build the Docker image using the docker build command:
+```
+docker build -t my-flask-app .
+```
+- Tag the Docker Image: Tag the image with your Amazon ECR repository URI:
+```
+docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
+```
+- Login to ECR: Use the AWS CLI to authenticate Docker to your Amazon ECR registry:
+```
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+```
+- Push the Docker Image to ECR: Finally, push the image to Amazon ECR:
+```
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
+```
+## Step 6: Create Amazon ECR Repository
 Before pushing your Docker image to ECR, you need to create an ECR repository:
 In the AWS Management Console, go to ECR.
 Click Create repository.
 Name the repository (e.g., my-flask-app) and create it.
 After creating the repository, follow Step 5 to push the image.
-Step 7: Setup Amazon EKS Cluster Requirements
+## Step 7: Setup Amazon EKS Cluster Requirements
 You need to install and configure the following tools:
 eksctl: Install it via Homebrew or download it directly from GitHub.
 kubectl: This is the Kubernetes CLI used to interact with the EKS cluster.
 AWS CLI: Make sure your AWS CLI is configured with your IAM credentials.
-Step 8: Creating an Amazon EKS Cluster
+## Step 8: Creating an Amazon EKS Cluster
 To create an EKS cluster, run the following eksctl command:
 eksctl create cluster --name my-flask-cluster --region <region> --nodegroup-name my-node-group --node-type t3.micro --nodes 3
 This command will create an EKS cluster with 3 t3.micro nodes in the specified region.
-Step 9: Create a Node Group
+## Step 9: Create a Node Group
 When you create an EKS cluster, you may also need to create a node group to run your applications. You can add this as part of the cluster creation process using eksctl or manually from the AWS console.
-Step 10: Create a Kubernetes Deployment
+## Step 10: Create a Kubernetes Deployment
 Create a Deployment YAML file (deployment.yaml):
 Deploy to EKS: Run the following command to create the deployment in your EKS cluster:
-Step 11: Test The Application
+## Step 11: Test The Application
 Once the deployment is successful, expose the Flask app via a Kubernetes service:
 Create a Service YAML file (service.yaml):
 Apply the Service:
 Access the application: Use the external IP provided by the LoadBalancer to access the Flask app in the browser.
-Step 12: Cleanup
+## Step 12: Cleanup
 After testing your application, you can clean up the resources to avoid unnecessary charges:
 Delete the EKS cluster:
 Delete the ECR repository (if no longer needed):
