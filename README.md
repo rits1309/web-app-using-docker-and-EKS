@@ -22,24 +22,19 @@ This is a simple "Hello, World!" application to test our Docker container and Ku
 A Dockerfile is a script used by Docker to build an image. Here's how to create a Dockerfile to containerize the Flask application.
 ### Dockerfile:
 ```
-FROM python:3.9-slim #### Use the official Python image from Docker Hub
-# Set the working directory inside the container
+FROM python:3.9-slim 
 WORKDIR /app
-# Copy the current directory contents into the container at /app
 COPY . /app
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-# Expose port 80 to communicate with the container
 EXPOSE 80
-# Define the command to run the application
 CMD ["python", "app.py"]
 ```
-This Dockerfile will:
-Start with a slim Python image.
-Copy the current directory files into the Docker image.
-Install the required dependencies.
-Expose port 80 (as Flask runs on port 80).
-Define the command to run the Flask app.
+### This Dockerfile will:
+    Start with a slim Python image.
+    Copy the current directory files into the Docker image.
+    Install the required dependencies.
+    Expose port 80 (as Flask runs on port 80).
+    Define the command to run the Flask app.
 Step 3: Create a requirements.txt File
 In the requirements.txt file, list the dependencies needed to run the Flask app, including Flask itself.
 requirements.txt:
