@@ -68,10 +68,10 @@ docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 ```
 ## Step 6: Create Amazon ECR Repository
 Before pushing your Docker image to ECR, you need to create an ECR repository:
-In the AWS Management Console, go to ECR.
-Click Create repository.
-Name the repository (e.g., my-flask-app) and create it.
-After creating the repository, follow Step 5 to push the image.
+- In the AWS Management Console, go to ECR.
+- Click Create repository.
+- Name the repository (e.g., ```my-flask-app```) and create it.
+- After creating the repository, follow Step 5 to push the image.
 ## Step 7: Setup Amazon EKS Cluster Requirements
 You need to install and configure the following tools:
 eksctl: Install it via Homebrew or download it directly from GitHub.
