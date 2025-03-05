@@ -63,6 +63,8 @@ docker build -t my-eks-web-app .
 ```
 docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 ```
+- Create an ECR repository to store your Docker images.
+Make note of the repository URI.
 - **Login to ECR**: Use the AWS CLI to authenticate Docker to your Amazon ECR registry:
 ```
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
