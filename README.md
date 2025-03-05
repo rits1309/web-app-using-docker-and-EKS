@@ -50,19 +50,19 @@ Before you can build your Docker image and deploy to ECR and EKS, make sure you 
 - **eksctl**: A tool for creating EKS clusters.
 Make sure you have an AWS account set up with the appropriate IAM roles for ECR and EKS access.
 ## Step 5: Build and Push Docker Image to Amazon ECR
-- Build the Docker Image: First, build the Docker image using the docker build command:
+- **Build the Docker Image**: First, build the Docker image using the docker build command:
 ```
 docker build -t my-flask-app .
 ```
-- Tag the Docker Image: Tag the image with your Amazon ECR repository URI:
+- **Tag the Docker Image**: Tag the image with your Amazon ECR repository URI:
 ```
 docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 ```
-- Login to ECR: Use the AWS CLI to authenticate Docker to your Amazon ECR registry:
+- **Login to ECR**: Use the AWS CLI to authenticate Docker to your Amazon ECR registry:
 ```
 aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 ```
-- Push the Docker Image to ECR: Finally, push the image to Amazon ECR:
+- **Push the Docker Image to ECR**: Finally, push the image to Amazon ECR:
 ```
 docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
 ```
