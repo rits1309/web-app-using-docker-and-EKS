@@ -1,4 +1,4 @@
-# Developing and Deploying a Basic Web Application on Amazon EKS
+# Deploying a Basic Web Application on Amazon EKS
 
 Here’s how you can explain each step in a README.md file for a project involving Flask, Docker, and deployment on AWS using Amazon EKS and ECR:
 Flask Web Application with Docker and EKS Deployment
@@ -18,11 +18,11 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
 ```
 This is a simple "Hello, World!" application to test our Docker container and Kubernetes setup later.
-Step 2: Create a Dockerfile
+## Step 2: Create a Dockerfile
 A Dockerfile is a script used by Docker to build an image. Here's how to create a Dockerfile to containerize the Flask application.
-Dockerfile:
-# Use the official Python image from Docker Hub
-FROM python:3.9-slim
+### Dockerfile:
+```
+FROM python:3.9-slim //Use the official Python image from Docker Hub
 # Set the working directory inside the container
 WORKDIR /app
 # Copy the current directory contents into the container at /app
@@ -33,6 +33,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 80
 # Define the command to run the application
 CMD ["python", "app.py"]
+```
 This Dockerfile will:
 Start with a slim Python image.
 Copy the current directory files into the Docker image.
