@@ -129,21 +129,12 @@ spec:
   type: LoadBalancer
 ```
 Apply the Service:
-Access the application: Use the external IP provided by the LoadBalancer to access the Flask app in the browser.
+### Access the application: Use the external IP provided by the LoadBalancer to access the Flask app in the browser.
 ## Step 12: Cleanup
 After testing your application, you can clean up the resources to avoid unnecessary charges:
 Delete the EKS cluster:
 Delete the ECR repository (if no longer needed):
-Conclusion
+## Conclusion
 This guide covers the steps to build a simple Flask web application, containerize it with Docker, deploy it to AWS using Amazon ECR and EKS, and test the deployment. By following the steps above, you can learn how to integrate Docker and Kubernetes with AWS for scalable web application deployments.
-Let me know if you'd like to add more specific details or have any questions!
-aws ecr delete-repository --repository-name my-flask-app --force
-eksctl delete cluster --name my-flask-cluster
 
-
-
-docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
-aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
-docker tag my-flask-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/my-flask-app:latest
-docker build -t my-flask-app .
 
